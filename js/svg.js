@@ -324,7 +324,6 @@
                 i++;
                 continue;
             } else {
-//				var buf = parseInt( Math.random() * this.maxForwardIndex) + 1;
                 var buf = i;
                 if (this.history[buf].queue.length <= 5) {
                     this.loggedScore(buf, seed);
@@ -338,9 +337,7 @@
             // 値が変わってはダメなのでコピー渡しをする
             this.initialScore = $.extend(true, {}, this.score);
             this.moved = false;
-//			console.log('initのスコア: ', this.score[1]);
         } else {
-//			console.log('1のスコア: ', this.initialScore[1]);
         }
 
 
