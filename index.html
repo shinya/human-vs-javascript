@@ -1,97 +1,125 @@
 <!doctype html>
 <html lang="ja">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39684954-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-39684954-4');
+    </script>
+
+
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="css/svg.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/d3.min.js"></script>
     <script type="text/javascript" src="js/svg.js"></script>
 
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <div class="container">
-        <div class="row-fluid">
-            <h1>Human vs Javascript</h1>
-            <div class="score span2">You Score:&nbsp;<span id="human_score">0</span>&nbsp;Continuous:&nbsp;<span id="human_continuous">0</span></div>
-            <div class="score offset2 span2">Cp Score:&nbsp;<span id="ai_score">0</span>&nbsp;Continuous:&nbsp;<span id="cp_continuous">0</span></div>
-            <div class="score ">FPS: <spanc id="fps">1</spanc></div>
+    <title>Human vs Javascript!</title>
+</head>
+<body>
+<div class="container">
+    <div class="row-fluid">
+        <h1>Human vs Javascript</h1>
+        <div class="score span2">You Score:&nbsp;<span id="human_score">0</span>&nbsp;Continuous:&nbsp;<span
+                id="human_continuous">0</span></div>
+        <div class="score offset2 span2">Cp Score:&nbsp;<span id="ai_score">0</span>&nbsp;Continuous:&nbsp;<span
+                id="cp_continuous">0</span></div>
+        <div class="score ">FPS:
+            <spanc id="fps">1</spanc>
         </div>
-
-        <div id="field"></div>
-<!--
-        デバッグ用ボタン
-        <div class="row-fluid">
-            <a href="#" class="btn btn-secondary" id="start">start</a>
-            <a href="#" class="btn btn-secondary" id="stop">stop</a>
-            <a href="#" class="btn btn-secondary" id="move">move</a>
-        </div>
--->
     </div>
 
+    <div id="field"></div>
+    <!--
+            デバッグ用ボタン
+            <div class="row-fluid">
+                <a href="#" class="btn btn-secondary" id="start">start</a>
+                <a href="#" class="btn btn-secondary" id="stop">stop</a>
+                <a href="#" class="btn btn-secondary" id="move">move</a>
+            </div>
+    -->
+</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="overviewModal" tabindex="-1" role="dialog" aria-labelledby="overviewModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="overviewModalCenterTitle">己の限界に挑戦</h5>
-                </div>
-                <div class="modal-body">
-                    <h3></h3>
-                    ルールは簡単。<br>
-                    <strong>大きな円＝ターゲット、小さな円＝ライバル。</strong><br>
-                    ライバルがターゲットに辿り着く前に、<br>
-                    あなたがマウスで辿り着く、<strong>以上</strong><br>
-                    ライバルは最初めちゃくちゃ遅いです。<br>
-                    しかし・・・<br>
-                    あなたが勝てば勝つほど、ライバルは早くなっていきます。<br>
-                    <strong>5回連続でライバルに先を越されるとゲームオーバーです</strong><br>
-                    いずれは、ライバルがあなたを追い抜く時が来る。<br>
-                    ・・・人間の限界を見せつけてやりましょう。
-                </div>
-                <div class="modal-footer">
-                    <a href="https://demae-can.com/" class="btn btn-secondary">お腹空いた</a>
-                    <button id="start-game" type="button" class="btn btn-primary">見せつけてやんよ！</button>
-                </div>
+
+<!-- Modal -->
+<div class="modal fade" id="overviewModal" tabindex="-1" role="dialog" aria-labelledby="overviewModalTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="overviewModalCenterTitle">己の限界に挑戦</h5>
+            </div>
+            <div class="modal-body">
+                <h3></h3>
+                ルールは簡単。<br>
+                <strong>大きな円＝ターゲット、小さな円＝ライバル。</strong><br>
+                ライバルがターゲットに辿り着く前に、<br>
+                あなたがマウスで辿り着く、<strong>以上</strong><br>
+                ライバルは最初めちゃくちゃ遅いです。<br>
+                しかし・・・<br>
+                あなたが勝てば勝つほど、ライバルは早くなっていきます。<br>
+                <strong>5回連続でライバルに先を越されるとゲームオーバーです</strong><br>
+                いずれは、ライバルがあなたを追い抜く時が来る。<br>
+                ・・・人間の限界を見せつけてやりましょう。
+            </div>
+            <div class="modal-footer">
+                <a href="https://demae-can.com/" class="btn btn-secondary">お腹空いた</a>
+                <button id="start-game" type="button" class="btn btn-primary">見せつけてやんよ！</button>
             </div>
         </div>
     </div>
+</div>
 
 
-    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="resultModalLabel">結果発表</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resultModalLabel">結果発表</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="result">
+                    スコアは<span id="result-score">0</span>、その時のFPSは
+                    <soan id="result-fps">1</soan>
+                    でした。
                 </div>
-                <div class="modal-body">
-                    <div class="result">
-                        スコアは<span id="result-score">0</span>、その時のFPSは<soan id="result-fps">1</soan>でした。
-                    </div>
-                    このアプリについての詳しい解説記事は<a href="#">コチラ</a>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary reload">もう一度挑戦する</button>
-                </div>
+                このアプリについての詳しい解説記事は<a href="#">コチラ</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary reload">もう一度挑戦する</button>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- Optional JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+<!-- Optional JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
 </html>
